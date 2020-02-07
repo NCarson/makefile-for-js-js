@@ -1,0 +1,30 @@
+
+####################################
+# RULES
+####################################
+
+HELP +=\n\n**all**: Make the `TARGETS`.
+.PHONY: all
+all: $(TARGETS)
+.DEFAULT_GOAL := all
+
+HELP +=\n\n**clean**: Remove `TARGETS` and `DIR_BUILD`.
+.PHONY: clean
+clean:
+	rm -f $(TARGETS)
+	rm -fr $(DIR_BUILD)
+
+######################################
+# INCLUDES
+######################################
+
+DIR_MAKEJS_LIB := $(DIR_PRJ_ROOT)/node_modules/@makefile-for-js/lib
+include $(DIR_MAKEJS_LIB)/lib/js.makefile 
+include $(DIR_MAKEJS_LIB)/lib/common.makefile
+
+######################################
+# YOUR RULES and OVERIDES
+######################################
+
+# overide variables and rules here so you will overwrite
+# the include makefiles instead of the other way around
