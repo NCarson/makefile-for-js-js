@@ -4,17 +4,13 @@
 
 <img 
     alt='screenshot' 
-    src='https://raw.githubusercontent.com/NCarson/makefile-for-js/master/.screen.png'
+    src='https://raw.githubusercontent.com/NCarson/makefile-for-js-js/master/.screen.png'
     width='600' />
 
 - implicit rules for making JS files (like how you type `make` in C source and it compiles)
 - Management of project template configs and directory structure
 - Easy to modify to different needs.
 - Easy to use. self documenting. Well commented.
-
-### API Doc
-
-https://ncarson.github.io/makefile-for-js/
 
 ### JS transpile Features
 
