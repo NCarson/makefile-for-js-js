@@ -2,7 +2,8 @@
 #  UMD LIBRARY BUILD
  
 DIR_TARGET := $(DIR_PRJ_ROOT)/lib# library type
-UMD_BASENAME :=umd# XXX this needs to be different from the source file names
+UMD_BASENAME :=umd# XXX this needs to be different from the source file names #FIXME does it??
+TARGETS := $(DIR_TARGET)/$(UMD_BASENAME).js
 
 #TARGETS := \
 #    $(DIR_TARGET)/$(UMD_BASENAME).js \
@@ -21,3 +22,4 @@ UMD_BASENAME :=umd# XXX this needs to be different from the source file names
 #	 TARGETS += $(patsubst %.js,%.min.js,$(TARGETS))# minified
 #    TARGETS += $(patsubst %.js,%.min.js.gz,$(TARGETS))# gzipped
 #    TARGETS += ../index.js# an index that imports all targets
+

@@ -41,6 +41,6 @@ HELP +=\n\n**clean**: remove docs
 clean: 
 	rm -fr $(DIR_DOC_TARGET)
 
-DIR_MAKEJS := .
+DIR_MAKEJS := ../../makefiles
 include $(DIR_MAKEJS)/lib/doc.makefile
 include $(DIR_MAKEJS)/lib/common.makefile

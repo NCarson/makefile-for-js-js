@@ -17,10 +17,11 @@ HELP_FILE += \n\n`src.makefile`\
 #XXX dont add trailing '/' to paths
 DIR_PRJ_ROOT := ..
 DIR_SRC := .
+DIR_MAKEJS := $(DIR_PRJ_ROOT)#$(DIR_PRJ_ROOT)/node_modules/makefile-for-js
 DIR_BUILD := $(DIR_SRC)/build
 
 # set this for ignored directories in your source direc
-DIR_EXCL_SRC :=
+DIR_EXCL_SRC := ./public
 #
 # Set this if you have a local node module
 # in another directory i.e. npm install --save ../my/local/node_module/.
@@ -31,29 +32,26 @@ DIR_LOCAL_DEPS :=
 #  COMMANDS
 ######################################
 
-#######################################
-#  UMD LIBRARY BUILD
- 
-DIR_TARGET := $(DIR_PRJ_ROOT)/lib# library type
-UMD_BASENAME :=umd# XXX this needs to be different from the source file names
 
-#TARGETS := \
-#    $(DIR_TARGET)/$(UMD_BASENAME).js \
-#    $(DIR_TARGET)/$(UMD_BASENAME).min.js \
-#    $(DIR_TARGET)/$(UMD_BASENAME).min.js.gz \ # all components bundled
-#    $(DIR_TARGET)/PostgrestFetcher.js \ # for individual imports
-#	 $(DIR_TARGET)/PostgrestQuery.js # etc ...
-#
-#    find all source files (on default export per file) and append ../lib direc to them
-#    leave out index as that probably goes in PROJECT_ROOT
-#TARGETS := $(shell find . -path $(DIR_BUILD) -prune -o -name '*.js' -print \
-#	| grep -v ^./index.js$ \
-#	| cut -b1-2 --complement \
-#	| awk '{print "$(DIR_TARGET)/"$$0}'  \
-#	)
-#	 TARGETS += $(patsubst %.js,%.min.js,$(TARGETS))# minified
-#    TARGETS += $(patsubst %.js,%.min.js.gz,$(TARGETS))# gzipped
-#    TARGETS += ../index.js# an index that imports all targets
+#######################################
+#  PACKAGE BUILD
+
+DIR_TARGET := ./public/dist# finished files go here
+VENDOR_BASENAME :=vendor# this will be the name of vendor bundle in DIR_TARGET
+BUNDLE_BASENAME :=bundle# this will be the name of your source bundle DIR_TARGET
+
+#XXX make sure to define ungzipped version along 
+#    with gzipped so `make clean` works correctly.
+BUNDLE_TARGET := \
+	$(DIR_TARGET)/$(BUNDLE_BASENAME).min.js \
+	$(DIR_TARGET)/$(BUNDLE_BASENAME).min.js.gz
+
+VENDOR_TARGET := \
+	$(DIR_TARGET)/$(VENDOR_BASENAME).min.js \
+	$(DIR_TARGET)/$(VENDOR_BASENAME).min.js.gz
+
+# this it what make will try try to build
+TARGETS :=  $(BUNDLE_TARGET) $(VENDOR_TARGET)
 
 ####################################
 # RULES
@@ -74,9 +72,8 @@ clean:
 # INCLUDES
 ######################################
 
-DIR_MAKEJS_LIB := $(DIR_PRJ_ROOT)/node_modules/@makefile-for-js/lib
-include $(DIR_MAKEJS_LIB)/lib/js.makefile 
-include $(DIR_MAKEJS_LIB)/lib/common.makefile
+include $(DIR_MAKEJS)/makefiles/js.makefile 
+include $(DIR_MAKEJS)/makefiles/common.makefile
 
 ######################################
 # YOUR RULES and OVERIDES
@@ -84,4 +81,3 @@ include $(DIR_MAKEJS_LIB)/lib/common.makefile
 
 # overide variables and rules here so you will overwrite
 # the include makefiles instead of the other way around
-hot new stuff]

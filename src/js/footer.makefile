@@ -1,4 +1,3 @@
-
 ####################################
 # RULES
 ####################################
@@ -18,9 +17,8 @@ clean:
 # INCLUDES
 ######################################
 
-DIR_MAKEJS_LIB := $(DIR_PRJ_ROOT)/node_modules/@makefile-for-js/lib
-include $(DIR_MAKEJS_LIB)/lib/js.makefile 
-include $(DIR_MAKEJS_LIB)/lib/common.makefile
+include $(DIR_MAKEJS)/lib/js.makefile 
+include $(DIR_MAKEJS)/lib/common.makefile
 
 ######################################
 # YOUR RULES and OVERIDES
@@ -28,3 +26,4 @@ include $(DIR_MAKEJS_LIB)/lib/common.makefile
 
 # overide variables and rules here so you will overwrite
 # the include makefiles instead of the other way around
+#
